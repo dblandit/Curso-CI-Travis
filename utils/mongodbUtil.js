@@ -5,9 +5,25 @@ const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/finanzas";
 function connect(databaseName) {
     const uri = mongoURI + databaseName;
     const options = {
+        // Indica que use el nuevo parser del string de conexión.
+        // El anterior está deprecado.
         useNewUrlParser: true,
+
+        // Indica que use la nueva forma de Server Discover y Monitoring engine.
+        // El anterior está deprecado.
         useUnifiedTopology: true,
-        useCreateIndex: true
+
+        // Pisa una opción (ensureIndex) que viene por default que está deprecada.
+        useCreateIndex: true,
+
+        // Evita que se creen automaticamente los índices de todos los modelos.
+        // Tambien puede causar que se ejecute alguna query de mongoose antes de
+        // terminar de crear los índices y terminaría fallando. 
+        autoIndex: false,
+
+        // Definir la base a que se conecta.
+        // Tiene prioridad sobre la base que esté en el string de conexión.
+        // dbName: databaseName
     };
   
     return mongoose.connect(uri, options);
