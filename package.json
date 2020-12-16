@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "nodemon": "nodemon server.js",
     "start": "node server.js"
   },
@@ -14,7 +14,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["./utils/setupMongodb.js"]
+    "setupFilesAfterEnv": [
+      "./utils/setupMongodb.js"
+    ]
   },
   "author": "DBlandIT",
   "license": "ISC",

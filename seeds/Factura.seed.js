@@ -7,7 +7,7 @@ module.exports = {
         region: 'CABA'
     },
     condPago: 'Contado',
-    fechaEmision: '2020',
+    fechaEmision: '2020-07-10T00:00:00Z',
     fechaVencimiento: '2020-07-14T00:00:00Z',
     item: [
         {

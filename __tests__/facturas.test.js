@@ -11,7 +11,13 @@ beforeAll(async () => {
     requestGenerator = requestWrapper(request, token);
 });
 
-test('GET /facturas debería responder con 200', async () => {
-    const response = await requestGenerator.get('/facturas');
-    expect(response.statusCode).toBe(200);
+describe.each`
+    requestObject             | codigo | condicion
+    ${() => requestGenerator} | ${200} | ${'con un jwt'}
+    ${() => request}          | ${401} | ${'sin un jwt'}
+`(`GET /facturas $condicion`, ({ requestObject, codigo, condicion }) => {
+    test(`debería responder con ${codigo}`, async () => {
+        const response = await requestObject().get('/facturas');
+        expect(response.statusCode).toBe(codigo);
+    });
 });
