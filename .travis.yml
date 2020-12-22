@@ -8,7 +8,7 @@ install:
 - npm install
 
 before_script:
-- docker login $REGISTRY -u $DOCKER_USER -p $DOCKER_PASS
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 jobs:
   include:
@@ -17,17 +17,17 @@ jobs:
     - stage: build latest
       script: 
       - docker build . -t workshop-js:latest
-      - docker image push $REGISTRY/workshop-js:latest
+      - docker image push $DOCKER_USER/workshop-js:latest
       if: branch = main
     - stage: build tag
       script: 
       - docker build . -t workshop-js:$TRAVIS_TAG
-      - docker image push $REGISTRY/workshop-js:latest
+      - docker image push $DOCKER_USER/workshop-js:latest
       if: tag is present
     - stage: build dev
       script: 
       - docker build . -t workshop-js:dev
-      - docker image push $REGISTRY/workshop-js:latest
+      - docker image push $DOCKER_USER/workshop-js:latest
       if: branch = resolucion
 
 deploy:
