@@ -1,4 +1,5 @@
 const app = require('./app');
+const mongoose = require('mongoose');
 const port = process.env.PORT || 8080;
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/finanzas";
 const options = {

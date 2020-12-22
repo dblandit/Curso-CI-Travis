@@ -17,6 +17,9 @@ Repositorio dedicado a la demostración de una implementación de API Rest en [E
 - #### Development
     Levanta un daemon en el puerto [8080](http://localhost:8080/) para poder desarrollar y aplicar los cambios una vez se guarde el archivo.
     - `npm run nodemon`
+- #### Testing
+    Se pueden correr tests de la aplicacion mediante el comando:
+    - `npm run test`
 - #### Production
     Corre un proceso Node en el puerto [8080](http://localhost:8080/) para poder interactuar con el servidor.
     - `npm start`
