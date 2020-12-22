@@ -5,6 +5,7 @@ RUN cd /src && npm install
 COPY  ./ /src
 
 WORKDIR /src
-EXPOSE 8080
+#ENV DEBUG=*
+
 
 CMD ["npm", "start"]
