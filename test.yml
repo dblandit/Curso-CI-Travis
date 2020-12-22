@@ -1,0 +1,37 @@
+language: node_js
+
+services:
+- mongodb
+- docker
+
+install:
+- npm install
+
+before_script:
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+jobs:
+  include:
+    - stage: test
+      script: npm run test
+    - stage: build latest
+      script: 
+      - docker build . -t ${DOCKER_USER}/workshop-js:latest
+      - docker image push ${DOCKER_USER}/workshop-js:latest
+      if: branch = main
+    - stage: build tag
+      script: 
+      - docker build . -t ${DOCKER_USER}/workshop-js:${TRAVIS_TAG}
+      - docker image push ${DOCKER_USER}/workshop-js:${TRAVIS_TAG}
+      if: tag is present
+    - stage: build dev
+      script: 
+      - docker build . -t ${DOCKER_USER}/workshop-js:dev
+      - docker push ${DOCKER_USER}/workshop-js:dev
+      if: branch = resolucion
+
+deploy:
+  app: js-resuelto
+  provider: heroku
+  api_key: $HEROKU_API_KEY
+  on: resolucion
