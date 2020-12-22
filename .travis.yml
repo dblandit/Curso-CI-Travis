@@ -17,17 +17,17 @@ jobs:
     - stage: build latest
       script: 
       - docker build . -t workshop-js:latest
-      - docker image push $DOCKER_USER/workshop-js:latest
+      - docker image push ${DOCKER_USER}/workshop-js:latest
       if: branch = main
     - stage: build tag
       script: 
       - docker build . -t workshop-js:$TRAVIS_TAG
-      - docker image push $DOCKER_USER/workshop-js:latest
+      - docker image push ${DOCKER_USER}/workshop-js:${TRAVIS_TAG}
       if: tag is present
     - stage: build dev
       script: 
       - docker build . -t workshop-js:dev
-      - docker image push $DOCKER_USER/workshop-js:latest
+      - docker image push ${DOCKER_USER}/workshop-js:dev
       if: branch = resolucion
 
 deploy:
